@@ -22,19 +22,16 @@ export async function askAI(message: string) {
     return "⚠️ Missing License: This model is not available in the free tier.";
   }
 
-  const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-    method: "POST",
-    headers: {
-      "Authorization": `Bearer ${apiKey}`,
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      model,
-      messages: [
-        { role: "user", content: message }
-      ]
-    })
-  });
+  const response = await fetch("/api/chat", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    model,
+    messages: [
+      { role: "user", content: message }
+    ]
+  })
+});
 
   const data = await response.json();
   return data.choices?.[0]?.message?.content || "No response";
