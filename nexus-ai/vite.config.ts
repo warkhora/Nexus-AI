@@ -3,5 +3,5 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
-  base: "/Nexus-AI/", // ← VIKTIG! Repo-navnet ditt
+  base: "./", // ← riktig for Vercel
 });
